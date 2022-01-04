@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Category.create!(name: 'Business model', goal: 'Dans cette 1ère partie, nous identifierons les actions que vous avez menées ou entreprises afin de développer votre "e-business')
+Category.create!(name: 'Produits et services', goal: '#')
+Question.create!(content: 'Êtes vous visible sur les canaux numériques (site web, google my business, linked in, facebook, instagram…) ?', category_id: 1)
+Question.create!(content: 'Votre offre de services/produits est-elle accessible sur des canaux digitaux ?', category_id: 2)
