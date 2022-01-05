@@ -5,6 +5,10 @@ class FormsController < ApplicationController
 
   def show
     @form = Form.find(params[:id])
+    @categories = Category.joins(:form_details).where(form_details: { form: @form })
+    @category = Category.new
+    @question = Question.new
+    @answer = Answer.new
   end
 
   def new

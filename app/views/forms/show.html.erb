@@ -1,2 +1,46 @@
-<h1><%= @form.name %></h1>
-<%= @form.description %>
+<div class="container">
+  <h1><%= @form.name %></h1>
+  <%= @form.description %>
+  <ol>
+    <% @categories.each do |category| %>
+      <div class="category">
+        <li>
+          <h2><%= category.name %></h2>
+          <p><%= category.goal %></p>
+          <ol>
+            <% category.questions.each do |question| %>
+              <div class="question">
+                <li>
+                  <p><%= question.content %></p>
+                  <ul>
+                    <% question.answers.each do |answer| %>
+                      <div class="answer">
+                        <li><%= answer.content %> - <%= answer.score %> point(s)</li>
+                      </div>
+                    <% end %>
+                  </ul>
+                  <%= simple_form_for [question, @answer] do |f| %>
+                    <%= f.input :content %>
+                    <%= f.input :score %>
+                    <%= hidden_field_tag :form, @form.id %>
+                    <%= f.submit "Submit answer", class: "btn btn-primary" %>
+                  <% end %>
+                </li>
+              </div>
+            <% end %>
+          </ol>
+          <%= simple_form_for [category, @question] do |f| %>
+            <%= f.input :content %>
+            <%= hidden_field_tag :form, @form.id %>
+            <%= f.submit "Submit question", class: "btn btn-primary" %>
+          <% end %>
+        </li>
+      </div>
+    <% end %>
+  </ol>
+  <%= simple_form_for [@form, @category] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :goal %>
+    <%= f.submit "Submit category", class: "btn btn-primary" %>
+  <% end %>
+</div>
