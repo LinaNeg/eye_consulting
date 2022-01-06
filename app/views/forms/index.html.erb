@@ -1,7 +1,7 @@
 <h1>Tests disponibles</h1>
 <ul>
   <% @forms.each do |form| %>
-    <li><%= form.name %> - editer</li>
+    <li><%= form.name %> - <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i></li>
   <% end %>
 </ul>
 <%= link_to 'Ajouter un test', new_form_path %>
