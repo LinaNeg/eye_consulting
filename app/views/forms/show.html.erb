@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-controller="form">
   <h1><%= @form.name %></h1>
   <%= @form.description %>
   <ol>
@@ -19,6 +19,7 @@
                       </div>
                     <% end %>
                   </ul>
+                  <a href="#">Ajouter une réponse</a>
                   <%= simple_form_for [question, @answer] do |f| %>
                     <%= f.input :content %>
                     <%= f.input :score %>
@@ -29,6 +30,7 @@
               </div>
             <% end %>
           </ol>
+          <a href="#">Ajouter une question</a>
           <%= simple_form_for [category, @question] do |f| %>
             <%= f.input :content %>
             <%= hidden_field_tag :form, @form.id %>
@@ -38,6 +40,7 @@
       </div>
     <% end %>
   </ol>
+  <a href="#">Ajouter une catégorie</a>
   <%= simple_form_for [@form, @category] do |f| %>
     <%= f.input :name %>
     <%= f.input :goal %>
