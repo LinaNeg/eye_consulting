@@ -19,31 +19,37 @@
                       </div>
                     <% end %>
                   </ul>
-                  <a href="#">Ajouter une réponse</a>
-                  <%= simple_form_for [question, @answer] do |f| %>
-                    <%= f.input :content %>
-                    <%= f.input :score %>
-                    <%= hidden_field_tag :form, @form.id %>
-                    <%= f.submit "Submit answer", class: "btn btn-primary" %>
-                  <% end %>
+                  <a href="#" data-action= "click->form#displayAnswerForm">Ajouter une réponse</a>
+                  <div class="d-none" data-form-target= 'answer'>
+                    <%= simple_form_for [question, @answer] do |f| %>
+                      <%= f.input :content %>
+                      <%= f.input :score %>
+                      <%= hidden_field_tag :form, @form.id %>
+                      <%= f.submit "Submit answer", class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
                 </li>
               </div>
             <% end %>
           </ol>
-          <a href="#">Ajouter une question</a>
-          <%= simple_form_for [category, @question] do |f| %>
-            <%= f.input :content %>
-            <%= hidden_field_tag :form, @form.id %>
-            <%= f.submit "Submit question", class: "btn btn-primary" %>
-          <% end %>
+          <a href="#" data-action= "click->form#displayQuestionForm">Ajouter une question</a>
+          <div class="d-none" data-form-target= 'question'>
+            <%= simple_form_for [category, @question] do |f| %>
+              <%= f.input :content %>
+              <%= hidden_field_tag :form, @form.id %>
+              <%= f.submit "Submit question", class: "btn btn-primary" %>
+            <% end %>
+          </div>
         </li>
       </div>
     <% end %>
   </ol>
-  <a href="#">Ajouter une catégorie</a>
-  <%= simple_form_for [@form, @category] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :goal %>
-    <%= f.submit "Submit category", class: "btn btn-primary" %>
-  <% end %>
+  <a href="#" data-action= "click->form#displayCategoryForm">Ajouter une catégorie</a>
+  <div class="d-none" data-form-target= 'category'>
+    <%= simple_form_for [@form, @category] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :goal %>
+      <%= f.submit "Submit category", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
