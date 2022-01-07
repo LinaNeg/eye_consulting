@@ -21,6 +21,22 @@ class FormsController < ApplicationController
     redirect_to form_path(@form)
   end
 
+  def edit
+    @form = Form.find(params[:id])
+  end
+
+  def update
+    @form = Form.find(params[:id])
+    @form.update(form_params)
+    redirect_to form_path(@form)
+  end
+
+  def destroy
+    @form = Form.find(params[:id])
+    @form.destroy
+    redirect_to forms_path
+  end
+
   private
 
   def form_params

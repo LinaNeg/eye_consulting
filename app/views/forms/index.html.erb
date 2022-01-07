@@ -1,7 +1,12 @@
-<h1>Tests disponibles</h1>
-<ul>
-  <% @forms.each do |form| %>
-    <li><%= form.name %> - <i class="fa-regular fa-pen-to-square"></i><i class="fa-regular fa-trash-can"></i></li>
-  <% end %>
-</ul>
-<%= link_to 'Ajouter un test', new_form_path %>
+<div class="container">
+  <h1>Tests disponibles</h1>
+  <ul>
+    <% @forms.each do |form| %>
+      <li><%= form.name %> - <%= link_to "edit", edit_form_path(form) %> | <%= link_to "Remove",
+                  form_path(form),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'Ajouter un test', new_form_path %>
+</div>
