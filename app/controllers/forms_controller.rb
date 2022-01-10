@@ -1,10 +1,10 @@
 class FormsController < ApplicationController
+  before_action :set_form, only: [:show, :edit, :update, :destroy]
   def index
     @forms = Form.all
   end
 
   def show
-    @form = Form.find(params[:id])
     @categories = Category.joins(:form_details).where(form_details: { form: @form })
     @category = Category.new
     @question = Question.new
@@ -22,22 +22,23 @@ class FormsController < ApplicationController
   end
 
   def edit
-    @form = Form.find(params[:id])
   end
 
   def update
-    @form = Form.find(params[:id])
     @form.update(form_params)
     redirect_to form_path(@form)
   end
 
   def destroy
-    @form = Form.find(params[:id])
     @form.destroy
     redirect_to forms_path
   end
 
   private
+
+  def set_form
+    @form = Form.find(params[:id])
+  end
 
   def form_params
     params.require(:form).permit(:name, :description)
