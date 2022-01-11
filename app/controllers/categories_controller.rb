@@ -1,4 +1,12 @@
 class CategoriesController < ApplicationController
+  def show
+    @form = Form.find(params[:form_id])
+    @categories = @form.categories.order(:id)
+    @category = Category.find(params[:id])
+    @next_category = @categories.where("categories.id > ?", @category.id).first
+    @questions = @category.questions
+  end
+
   def create
     @category = Category.new(category_params)
     @form = Form.find(params[:form_id])

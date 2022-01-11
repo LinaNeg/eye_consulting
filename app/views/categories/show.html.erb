@@ -1,0 +1,5 @@
+<div class="container">
+  <h1><%= @category.name %></h1>
+  <p><%= @category.goal %></p>
+  <%= link_to "Continuer", form_question_path(@form, @questions.first), class: "btn btn-primary" %>
+</div>

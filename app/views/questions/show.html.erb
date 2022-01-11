@@ -1,0 +1,18 @@
+<div class="banner"><h2><%= @category.name %></h2></div>
+<div class="container">
+  <h2><%= @question.content %></h2>
+  <ul>
+    <% @question.answers.each do |answer| %>
+      <li><%= answer.content %></li>
+    <% end %>
+  </ul>
+  <% if @next_question.nil? %>
+    <% if @next_category.nil? %>
+      <%= link_to "Résultats", "#", class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "fin", form_category_path(@form, @next_category), class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= link_to "Ok", form_question_path(@form, @next_question), class: "btn btn-primary" %>
+  <% end %>
+</div>

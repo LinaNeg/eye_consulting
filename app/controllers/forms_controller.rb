@@ -11,6 +11,11 @@ class FormsController < ApplicationController
     @answer = Answer.new
   end
 
+  def user_show
+    @form = Form.find(params[:id])
+    @categories = @form.categories
+  end
+
   def new
     @form = Form.new
   end
