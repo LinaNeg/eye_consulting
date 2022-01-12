@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :show ]
+
   def show
     @question = Question.find(params[:id])
     @form = Form.find(params[:form_id])

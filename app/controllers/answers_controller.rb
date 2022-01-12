@@ -4,9 +4,13 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer.question = @question
     @answer.save
-    #@form = Form.find(params[:form])
-    #@form = Form.joins(:form_details).where(form_details: { category: @category })
+    @form = Form.find(params[:form])
     redirect_to form_path(@form)
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
   end
 
   private
