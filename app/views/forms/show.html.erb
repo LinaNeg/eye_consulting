@@ -14,13 +14,13 @@
                   <p><%= question.content %></p>
                   <ul>
                     <% question.answers.each do |answer| %>
-                      <div class="answer">
-                        <li><%= answer.content %> - <%= answer.score %> point(s)</li>
+                      <div class="answer" id="answer-<%= answer.id %>">
+                        <li><%= answer.content %> - <%= answer.score %> point(s) | <%= link_to "-", answer_path(answer, form: @form.id), method: :delete %></li>
                       </div>
                     <% end %>
                   </ul>
-                  <div>
-                    <div class="">
+                  <div data-controller="display-answer-form">
+                    <div class="d-none" data-display-answer-form-target= 'answer'>
                       <%= simple_form_for [question, @answer] do |f| %>
                         <%= f.input :content %>
                         <%= f.input :score %>
@@ -28,14 +28,14 @@
                         <%= f.submit "Submit answer", class: "btn btn-primary" %>
                       <% end %>
                     </div>
-
+                    <a href="#" data-action= "click->display-answer-form#display">Ajouter une réponse</a>
                   </div>
                 </li>
               </div>
             <% end %>
           </ol>
           <div data-controller="display-question-form">
-            <div class="" data-display-question-form-target= 'question'>
+            <div class="d-none" data-display-question-form-target= 'question'>
               <%= simple_form_for [category, @question] do |f| %>
                 <%= f.input :content %>
                 <%= hidden_field_tag :form, @form.id %>
@@ -48,8 +48,8 @@
       </div>
     <% end %>
   </ol>
-  <div>
-    <div class="" data-form-target= 'category'>
+  <div data-controller="form">
+    <div class="d-none" data-form-target= 'category'>
       <%= simple_form_for [@form, @category] do |f| %>
         <%= f.input :name %>
         <%= f.input :goal %>

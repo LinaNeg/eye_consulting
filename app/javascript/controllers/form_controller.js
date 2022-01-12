@@ -2,10 +2,10 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
   connect() {
-    //console.log("Hello from your first Stimulus controller");
+    console.log(this.categoryTarget);
   }
 
-  static target = 'category';
+  static targets = ['category'];
 
   displayCategoryForm(event) {
     event.preventDefault();
