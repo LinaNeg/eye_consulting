@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :questions, only: :show
   end
   get '/user_forms/:id', to: 'forms#user_show', as: 'user_show'
+  get '/user_index', to: 'forms#user_index', as: 'user_index'
 
   resources :categories, only: :create do
     resources :questions, only: :create

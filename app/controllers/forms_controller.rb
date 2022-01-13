@@ -1,7 +1,11 @@
 class FormsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :user_show ]
+  skip_before_action :authenticate_user!, only: [ :index, :user_show, :user_index ]
   before_action :set_form, only: [:show, :edit, :update, :destroy]
   def index
+    @forms = Form.all
+  end
+
+  def user_index
     @forms = Form.all
   end
 
