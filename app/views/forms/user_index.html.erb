@@ -1,8 +1,18 @@
 <div class="container">
-  <h1>Tests disponibles</h1>
-  <ul>
+  <div class="card-title">
+    <h1>Tests disponibles</h1>
+  </div>
+  <ul style="list-style-type: none;">
     <% @forms.each do |form| %>
-      <li><%= link_to form.name, user_show_path(form) %> </li>
+      <li>
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= link_to form.name, user_show_path(form) %></h2>
+            <p><%= form.description %></p>
+          </div>
+        </div>
+      </li>
     <% end %>
   </ul>
 </div>
