@@ -1,7 +1,7 @@
-<div class="banner"><h2><%= @category.name %></h2></div>
+<div class="banner"><h3><%= @category.name %></h3></div>
 <div class="container">
   <h2><%= @question.content %></h2>
-  <ul>
+  <ul style="list-style-type: none;">
     <% @question.answers.each do |answer| %>
       <li><%= link_to answer.content, user_answers_path(), method: :post, class: "btn btn-body-color" %></li>
     <% end %>

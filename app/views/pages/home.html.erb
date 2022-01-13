@@ -2,9 +2,13 @@
   <div class="card-title">
     <h1>Tests en folies</h1>
   </div>
-  <div class="card-category">
-    theme
+  <div class="card-content">
+    <p>vous pouvez dès à présent accéder à l'ensemble de nos tests</p>
+    <%= link_to "Ici", user_index_path%>
   </div>
-
-  <%= link_to "Nos tests", user_index_path%>
+  <div class="card-content">
+    <p>Cependant, pour une analyse plus fine de vos résultats, vous devrez vous connecter!</p>
+    <p>👉 <%= link_to "Maintenant", new_user_session_path%> 👈</p>
+    <p>... ou en fin de test 😎</p>
+  </div>
 </div>
