@@ -51,6 +51,6 @@ class FormsController < ApplicationController
   end
 
   def form_params
-    params.require(:form).permit(:name, :description)
+    params.require(:form).permit(:name, :description, :theme)
   end
 end

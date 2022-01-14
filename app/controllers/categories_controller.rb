@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :show ]
+  #skip_before_action :authenticate_user!, only: [ :show ]
 
   def show
     @form = Form.find(params[:form_id])
