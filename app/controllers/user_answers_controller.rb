@@ -12,7 +12,7 @@ class UserAnswersController < ApplicationController
     redirect_to form_question_path(@form, @question)
   end
 
-  def index
+  def results
     @user_answers = UserAnswer.where(user: current_user)
   end
 end

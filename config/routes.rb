@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resources :user_answers, only: [:index, :create]
   end
 
+  get '/results', to: 'user_answers#results'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

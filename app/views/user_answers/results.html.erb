@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="card-title">
+    <h1>Vos résultats</h1>
+  </div>
+  <div class="card-results">
+    <ul>
+      <% score = [] %>
+      <% best_score = [] %>
+      <% @user_answers.each do |user_answer| %>
+        <% question = user_answer.question %>
+        <% best_answer = question.answers.order(:score).last %>
+        <li style="list-style-type: none;">
+          <p>Question : <%= user_answer.question.content %></p>
+          <p>Votre réponse : <%= user_answer.answer.content %> - <%= user_answer.answer.score %></p>
+          <% score.push(user_answer.answer.score) %>
+          <p>Correction : <%= best_answer.content if best_answer != user_answer.answer %></p>
+          <% best_score.push(best_answer.score) %>
+        </li>
+      <% end %>
+      <p>Score : <%= score.sum %> / <%= best_score.sum %></p>
+    </ul>
+  </div>
+</div>
