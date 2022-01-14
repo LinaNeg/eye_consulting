@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :user_answers, only: [:index, :create]
 
   root to: 'pages#home'
 
@@ -20,7 +19,9 @@ Rails.application.routes.draw do
     resources :answers, only: :create
   end
 
-  resources :answers, only: :destroy
+  resources :answers, only: :destroy do
+    resources :user_answers, only: [:index, :create]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

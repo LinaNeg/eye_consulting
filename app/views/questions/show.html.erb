@@ -3,7 +3,7 @@
   <h2><%= @question.content %></h2>
   <ul style="list-style-type: none;">
     <% @question.answers.each do |answer| %>
-      <li><%= link_to answer.content, user_answers_path(answer), method: :post, class: "btn btn-body-color" %></li>
+      <li class="<%= "green" if UserAnswer.where(user: current_user, answer: answer).any? %>"><%= link_to answer.content, answer_user_answers_path(answer, form_id: @form.id), method: :post, class: "btn btn-body-color" %></li>
     <% end %>
   </ul>
   <% if @next_question.nil? %>
