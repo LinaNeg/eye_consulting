@@ -14,5 +14,7 @@ class UserAnswersController < ApplicationController
 
   def results
     @user_answers = UserAnswer.where(user: current_user)
+    @form = Form.find(params[:form])
+    @categories = @form.categories
   end
 end
