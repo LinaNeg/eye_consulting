@@ -5,6 +5,9 @@ class UserAnswersController < ApplicationController
     @user_answer.answer = @answer
     @user_answer.user = current_user
     @user_answer.save
-    redirect_to form_question_path
+    @form = Form.find(params[:form_id])
+    @question = Question.find(params[:id])
+    @answer.question = @question
+    redirect_to form_question_path(@form, @question)
   end
 end
