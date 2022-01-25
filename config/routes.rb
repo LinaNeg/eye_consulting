@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
-
   root to: 'pages#home'
 
   resources :forms do
     resources :categories, only: [:create, :show]
     resources :questions, only: :show
+    resources :user_answers, only: :index, as: 'user_results'
   end
   get '/user_forms/:id', to: 'forms#user_show', as: 'user_show'
   get '/user_index', to: 'forms#user_index', as: 'user_index'

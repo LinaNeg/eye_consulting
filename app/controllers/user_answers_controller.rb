@@ -12,9 +12,9 @@ class UserAnswersController < ApplicationController
     redirect_to form_question_path(@form, @question)
   end
 
-  def results
+  def index
     @user_answers = UserAnswer.where(user: current_user)
-    @form = Form.find(params[:form])
+    @form = Form.find(params[:form_id])
     @categories = @form.categories
   end
 end

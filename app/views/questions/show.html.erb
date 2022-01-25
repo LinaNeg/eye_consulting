@@ -8,7 +8,7 @@
   </ul>
   <% if @next_question.nil? %>
     <% if @next_category.nil? %>
-      <%= link_to "Résultats", results_path(form: @form), class: "btn btn-primary" %>
+      <%= link_to "Résultats", form_user_results_path(@form), class: "btn btn-primary" %>
     <% else %>
       <%= link_to "section suivante", form_category_path(@form, @next_category), class: "btn btn-primary" %>
     <% end %>

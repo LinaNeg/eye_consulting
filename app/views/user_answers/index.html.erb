@@ -3,6 +3,8 @@
     <h1>Vos résultats</h1>
   </div>
   <div class="card-results">
+    <% global_score = [] %>
+    <% global_best_score = [] %>
     <% @categories.each do |category| %>
       <%= category.name %>
       <ul>
@@ -20,7 +22,10 @@
           </li>
         <% end %>
         <p>Score : <%= score.sum %> / <%= best_score.sum %></p>
+        <% global_score.push(score.sum) %>
+        <% global_best_score.push(best_score.sum) %>
       </ul>
     <% end %>
+    <p>Total : <%= global_score.sum %> / <%= global_best_score.sum %></p>
   </div>
 </div>
