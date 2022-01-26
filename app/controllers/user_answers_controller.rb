@@ -17,4 +17,10 @@ class UserAnswersController < ApplicationController
     @form = Form.find(params[:form_id])
     @categories = @form.categories
   end
+
+  def analysis
+    @user_answers = UserAnswer.where(user: current_user)
+    @form = Form.find(params[:form_id])
+    @categories = @form.categories
+  end
 end

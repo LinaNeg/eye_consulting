@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:create, :show]
     resources :questions, only: :show
     resources :user_answers, only: :index, as: 'user_results'
+    get '/analysis', to: 'user_answers#analysis'
   end
   get '/user_forms/:id', to: 'forms#user_show', as: 'user_show'
   get '/user_index', to: 'forms#user_index', as: 'user_index'
@@ -22,8 +23,6 @@ Rails.application.routes.draw do
   resources :answers, only: :destroy do
     resources :user_answers, only: [:index, :create]
   end
-
-  get '/results', to: 'user_answers#results'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

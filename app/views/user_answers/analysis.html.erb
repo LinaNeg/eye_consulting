@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card-title">
-    <h1>Vos résultats</h1>
+    <h1>Analyse</h1>
   </div>
   <% global_score = [] %>
   <% global_best_score = [] %>
@@ -15,10 +15,6 @@
           <% user_answer = question.user_answers.where(user: current_user).first %>
           <% score.push(user_answer.answer.score) %>
           <% best_score.push(best_answer.score) %>
-          <li style="list-style-type: none;">
-            <p>Question : <%= user_answer.question.content %></p>
-            <p>Votre réponse : <%= user_answer.answer.content %> - <%= user_answer.answer.score %></p>
-          </li>
         <% end %>
         <p>Score : <%= score.sum %> / <%= best_score.sum %></p>
         <% global_score.push(score.sum) %>
@@ -27,5 +23,5 @@
     <% end %>
   </ul>
   <p>Total : <%= global_score.sum %> / <%= global_best_score.sum %></p>
-  <%= link_to "Voir l'analyse", form_analysis_path(@form) %>
+  <%= link_to "Partager mes résultats" %>
 </div>
