@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_180031) do
+ActiveRecord::Schema.define(version: 2022_01_26_144816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2022_01_17_180031) do
     t.text "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "min"
+    t.integer "max"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_comments_on_category_id"
   end
 
   create_table "form_details", force: :cascade do |t|
@@ -87,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_180031) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "comments", "categories"
   add_foreign_key "form_details", "categories"
   add_foreign_key "form_details", "forms"
   add_foreign_key "questions", "categories"

@@ -4,16 +4,19 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :forms do
-    resources :categories, only: [:create, :show]
+    resources :categories, only: %i[create show]
+    get '/forms/:form_id/user_categories/:id', to: 'categories#user_show', as: 'user_category'
     resources :questions, only: :show
     resources :user_answers, only: :index, as: 'user_results'
     get '/analysis', to: 'user_answers#analysis'
+    resources :comments, only: %i[new create]
   end
   get '/user_forms/:id', to: 'forms#user_show', as: 'user_show'
   get '/user_index', to: 'forms#user_index', as: 'user_index'
 
-  resources :categories, only: :create do
+  resources :categories, only: %i[create show] do
     resources :questions, only: :create
+    resources :comments, only: %i[new create]
   end
 
   resources :questions, only: :create do
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: :destroy do
-    resources :user_answers, only: [:index, :create]
+    resources :user_answers, only: %i[index create]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

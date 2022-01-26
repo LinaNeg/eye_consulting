@@ -1,7 +1,15 @@
 <div class="container">
-  <div class="card-content">
-    <h1><%= @category.name %></h1>
-    <p><%= @category.goal %></p>
-    <%= link_to "Continuer", form_question_path(@form, @questions.first), class: "btn btn-primary" %>
-  </div>
+  <%= @category.name %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>de <%= comment.min %> à <%= comment.max %> : <%= comment.content %></li>
+    <% end %>
+  </ul>
+  <%= simple_form_for [@category, @comment] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :min %>
+      <%= f.input :max %>
+      <%= f.submit "Submit comment", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Retour au test", form_path(@form) %>
 </div>

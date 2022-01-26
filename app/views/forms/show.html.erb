@@ -5,7 +5,7 @@
     <% @categories.each do |category| %>
       <div class="category">
         <li>
-          <h2><%= category.name %></h2>
+          <h2><%= category.name %><%= link_to "Personnaliser les commentaires", form_category_path(@form, category) %></h2>
           <p><%= category.goal %></p>
           <ol>
             <% category.questions.each do |question| %>
@@ -58,4 +58,5 @@
     </div>
     <a href="#" data-action= "click->form#displayCategoryForm">Ajouter une catégorie</a>
   </div>
+  <%= link_to "Personnaliser les commentaires", new_form_comment_path(@form) %>
 </div>

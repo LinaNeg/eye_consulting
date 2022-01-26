@@ -3,6 +3,13 @@ class CategoriesController < ApplicationController
 
   def show
     @form = Form.find(params[:form_id])
+    @category = Category.find(params[:id])
+    @comments = @category.comments
+    @comment = Comment.new
+  end
+
+  def user_show
+    @form = Form.find(params[:form_id])
     @categories = @form.categories.order(:id)
     @category = Category.find(params[:id])
     @next_category = @categories.where("categories.id > ?", @category.id).first
