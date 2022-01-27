@@ -1,7 +1,9 @@
 <div class="container">
+  <div class="card-title">
+    <h1><%= @form.name %></h1>
+  </div>
   <div class="card-content">
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis hic tempore, debitis nemo, eos recusandae suscipit odit dicta animi commodi explicabo assumenda vel incidunt, ratione vitae neque molestias perspiciatis error!</p>
-    <h1><%= @form.name %></h1>
     <p><%= @form.description %></p>
     <%= link_to "Commencer le test", form_user_category_path(@form, @categories.first), class: "btn btn-primary" %>
   </div>

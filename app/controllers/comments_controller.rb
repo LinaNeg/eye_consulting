@@ -13,6 +13,17 @@ class CommentsController < ApplicationController
     redirect_to form_category_path(@form, @category)
   end
 
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    redirect_to form_category_path(@form, @category)
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+  end
+
   private
 
   def comment_params

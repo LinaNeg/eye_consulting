@@ -1,16 +1,21 @@
 <div class="container">
-  <%= @category.name %>
-  <ul>
-    <% @comments.each do |comment| %>
-      <li>de <%= comment.min %> à <%= comment.max %> : <%= comment.content %></li>
+  <div class="card-title">
+    <h1><%= @category.name %></h1>
+  </div>
+  <div class="card-content">
+    <h2>Commentaires</h2>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>de <%= comment.min %> à <%= comment.max %> : <%= comment.content %> <%= link_to "-", comment_path(comment), method: :delete %></li>
+      <% end %>
+    </ul>
+    <%= simple_form_for [@category, @comment] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :min %>
+        <%= f.input :max %>
+        <%= hidden_field_tag :form, @form.id %>
+        <%= f.submit "Submit comment", class: "btn btn-primary" %>
     <% end %>
-  </ul>
-  <%= simple_form_for [@category, @comment] do |f| %>
-      <%= f.input :content %>
-      <%= f.input :min %>
-      <%= f.input :max %>
-      <%= hidden_field_tag :form, @form.id %>
-      <%= f.submit "Submit comment", class: "btn btn-primary" %>
-  <% end %>
-  <%= link_to "Retour au test", form_path(@form) %>
+    <%= link_to "Retour au test", form_path(@form) %>
+  </div>
 </div>

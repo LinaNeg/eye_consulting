@@ -2,30 +2,31 @@
   <div class="card-title">
     <h1>Vos résultats</h1>
   </div>
-  <% global_score = [] %>
-  <% global_best_score = [] %>
+  <div class="card-content"></div>
+  <% global_score = 0 %>
+  <% global_best_score = 0 %>
   <ul>
     <% @categories.each do |category| %>
       <div class="card-results">
         <%= category.name %>
-        <% score = [] %>
-        <% best_score = [] %>
+        <% score = 0 %>
+        <% best_score = 0 %>
         <% category.questions.each do |question| %>
           <% best_answer = question.answers.order(:score).last %>
           <% user_answer = question.user_answers.where(user: current_user).first %>
-          <% score.push(user_answer.answer.score) %>
-          <% best_score.push(best_answer.score) %>
-          <li style="list-style-type: none;">
+          <% score += user_answer.answer.score %>
+          <% best_score += best_answer.score %>
+          <li>
             <p>Question : <%= user_answer.question.content %></p>
             <p>Votre réponse : <%= user_answer.answer.content %> - <%= user_answer.answer.score %></p>
           </li>
         <% end %>
-        <p>Score : <%= score.sum %> / <%= best_score.sum %></p>
-        <% global_score.push(score.sum) %>
-        <% global_best_score.push(best_score.sum) %>
+        <p>Score : <%= score %> / <%= best_score %></p>
+        <% global_score += score %>
+        <% global_best_score += best_score %>
       </div>
     <% end %>
   </ul>
-  <p>Total : <%= global_score.sum %> / <%= global_best_score.sum %></p>
+  <p>Total : <%= global_score %> / <%= global_best_score %></p>
   <%= link_to "Voir l'analyse", form_analysis_path(@form) %>
 </div>

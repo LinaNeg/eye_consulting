@@ -16,8 +16,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: %i[create show] do
     resources :questions, only: :create
-    resources :comments, only: %i[new create]
+    resources :comments, only: %i[new create update]
   end
+
+  resources :comments, only: :destroy
 
   resources :questions, only: :create do
     resources :answers, only: :create

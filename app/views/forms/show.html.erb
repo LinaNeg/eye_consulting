@@ -1,62 +1,66 @@
 <div class="container">
-  <h1><%= @form.name %></h1>
-  <%= @form.description %>
-  <ol>
-    <% @categories.each do |category| %>
-      <div class="category">
-        <li>
-          <h2><%= category.name %> <small><%= link_to "Personnaliser les commentaires", form_category_path(@form, category) %></small></h2>
-          <p><%= category.goal %></p>
-          <ol>
-            <% category.questions.each do |question| %>
-              <div class="question">
-                <li>
-                  <p><%= question.content %></p>
-                  <ul>
-                    <% question.answers.each do |answer| %>
-                      <div class="answer" id="answer-<%= answer.id %>">
-                        <li><%= answer.content %> - <%= answer.score %> point(s) | <%= link_to "-", answer_path(answer, form: @form.id), method: :delete %></li>
-                      </div>
-                    <% end %>
-                  </ul>
-                  <div data-controller="display-answer-form">
-                    <div class="d-none" data-display-answer-form-target= 'answer'>
-                      <%= simple_form_for [question, @answer] do |f| %>
-                        <%= f.input :content %>
-                        <%= f.input :score %>
-                        <%= hidden_field_tag :form, @form.id %>
-                        <%= f.submit "Submit answer", class: "btn btn-primary" %>
-                      <% end %>
-                    </div>
-                    <a href="#" data-action= "click->display-answer-form#display">Ajouter une réponse</a>
-                  </div>
-                </li>
-              </div>
-            <% end %>
-          </ol>
-          <div data-controller="display-question-form">
-            <div class="d-none" data-display-question-form-target= 'question'>
-              <%= simple_form_for [category, @question] do |f| %>
-                <%= f.input :content %>
-                <%= hidden_field_tag :form, @form.id %>
-                <%= f.submit "Submit question", class: "btn btn-primary" %>
-              <% end %>
-            </div>
-            <a href="#" data-action= "click->display-question-form#display">Ajouter une question</a>
-          </div>
-        </li>
-      </div>
-    <% end %>
-  </ol>
-  <div data-controller="form">
-    <div class="d-none" data-form-target= 'category'>
-      <%= simple_form_for [@form, @category] do |f| %>
-        <%= f.input :name %>
-        <%= f.input :goal %>
-        <%= f.submit "Submit category", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-    <a href="#" data-action= "click->form#displayCategoryForm">Ajouter une catégorie</a>
+  <div class="card-title">
+    <h1><%= @form.name %></h1>
   </div>
-  <%= link_to "Personnaliser les commentaires", new_form_comment_path(@form) %>
+  <div class="card-content">
+    <p><%= @form.description %></p>
+    <ol>
+      <% @categories.each do |category| %>
+        <div class="category">
+          <li>
+            <h2><%= category.name %></h2>
+            <p>Objectif : <%= category.goal %></p>
+            <%= link_to "Personnaliser les commentaires", form_category_path(@form, category) %>
+            <ol>
+              <% category.questions.each do |question| %>
+                <div class="question">
+                  <li>
+                    <p><%= question.content %></p>
+                    <ul>
+                      <% question.answers.each do |answer| %>
+                        <div class="answer" id="answer-<%= answer.id %>">
+                          <li><%= answer.content %> - <%= answer.score %> point(s) | <%= link_to "-", answer_path(answer, form: @form.id), method: :delete %></li>
+                        </div>
+                      <% end %>
+                    </ul>
+                    <div data-controller="display-answer-form">
+                      <div class="d-none" data-display-answer-form-target= 'answer'>
+                        <%= simple_form_for [question, @answer] do |f| %>
+                          <%= f.input :content %>
+                          <%= f.input :score %>
+                          <%= hidden_field_tag :form, @form.id %>
+                          <%= f.submit "Submit answer", class: "btn btn-primary" %>
+                        <% end %>
+                      </div>
+                      <a href="#" data-action= "click->display-answer-form#display">Ajouter une réponse</a>
+                    </div>
+                  </li>
+                </div>
+              <% end %>
+            </ol>
+            <div data-controller="display-question-form">
+              <div class="d-none" data-display-question-form-target= 'question'>
+                <%= simple_form_for [category, @question] do |f| %>
+                  <%= f.input :content %>
+                  <%= hidden_field_tag :form, @form.id %>
+                  <%= f.submit "Submit question", class: "btn btn-primary" %>
+                <% end %>
+              </div>
+              <a href="#" data-action= "click->display-question-form#display">Ajouter une question</a>
+            </div>
+          </li>
+        </div>
+      <% end %>
+    </ol>
+    <div data-controller="form">
+      <div class="d-none" data-form-target= 'category'>
+        <%= simple_form_for [@form, @category] do |f| %>
+          <%= f.input :name %>
+          <%= f.input :goal %>
+          <%= f.submit "Submit category", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <a href="#" data-action= "click->form#displayCategoryForm">Ajouter une catégorie</a>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,8 @@
 <div class="container">
-  <div class="card-content">
+  <div class="card-title">
     <h1><%= @category.name %></h1>
+  </div>
+  <div class="card-content">
     <p><%= @category.goal %></p>
     <%= link_to "Continuer", form_question_path(@form, @questions.first), class: "btn btn-primary" %>
   </div>

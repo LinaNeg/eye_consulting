@@ -1,18 +1,20 @@
 <div class="banner"><h3><%= @category.name %></h3></div>
 <div class="container">
-  <h2><%= @question.content %></h2>
-  <ul style="list-style-type: none;">
-    <% @question.answers.each do |answer| %>
-      <li class="<%= "green" if UserAnswer.where(user: current_user, answer: answer).any? %>"><%= link_to answer.content, answer_user_answers_path(answer, form_id: @form.id), method: :post, class: "btn btn-body-color" %></li>
-    <% end %>
-  </ul>
-  <% if @next_question.nil? %>
-    <% if @next_category.nil? %>
-      <%= link_to "Résultats", form_user_results_path(@form), class: "btn btn-primary" %>
+  <div class="card-content">
+    <h2><%= @question.content %></h2>
+    <ul>
+      <% @question.answers.each do |answer| %>
+        <li class="<%= "green" if UserAnswer.where(user: current_user, answer: answer).any? %>"><%= link_to answer.content, answer_user_answers_path(answer, form_id: @form.id), method: :post, class: "btn btn-body-color" %></li>
+      <% end %>
+    </ul>
+    <% if @next_question.nil? %>
+      <% if @next_category.nil? %>
+        <%= link_to "Résultats", form_user_results_path(@form), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "section suivante", form_user_category_path(@form, @next_category), class: "btn btn-primary" %>
+      <% end %>
     <% else %>
-      <%= link_to "section suivante", form_user_category_path(@form, @next_category), class: "btn btn-primary" %>
+      <%= link_to "question suivante", form_question_path(@form, @next_question), class: "btn btn-primary" %>
     <% end %>
-  <% else %>
-    <%= link_to "question suivante", form_question_path(@form, @next_question), class: "btn btn-primary" %>
-  <% end %>
+  </div>
 </div>

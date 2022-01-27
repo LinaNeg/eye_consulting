@@ -29,13 +29,42 @@
 .card-content {
   display: block;
   background-color: ivory;
-  text-align: center;
-  margin: 10px;
+  text-align: justify;
+  margin: 0px;
   padding: 10px;
 
   h1 {
     color: rgb(9, 78, 90);
     padding: 20px;
+  }
+
+  h2 {
+    border: 1px solid rgb(9, 78, 90);
+    color: rgb(9, 78, 90);
+    padding: 20px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  table, td, th, thead, tfoot {
+    border: 1px solid black;
+  }
+
+  table {
+    margin: 20px;
+  }
+  td {
+    height: 40px;
+    width: 100px;
+    text-align: left;
+  }
+
+  thead, tfoot {
+
+    background-color: aquamarine;
+    color: black;
   }
 }
 

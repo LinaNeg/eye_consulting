@@ -1,18 +1,20 @@
 <div class="container">
   <div class="card-title">
-    <h1>Tests disponibles</h1>
+    <h1>Nos tests</h1>
   </div>
-  <ul style="list-style-type: none;">
-    <% @forms.each do |form| %>
-      <li>
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2><%= link_to form.name, user_show_path(form) %></h2>
-            <p><%= form.description %></p>
+  <div class="card-content">
+    <ul>
+      <% @forms.each do |form| %>
+        <li>
+          <div class="card-product">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <h2><%= link_to form.name, user_show_path(form) %></h2>
+              <p><%= form.description %></p>
+            </div>
           </div>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

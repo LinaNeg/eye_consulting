@@ -1,44 +1,42 @@
 <div class="container">
   <div class="card-title">
-    <h1>Analyse</h1>
+    <h1><%= @form.name %></h1>
   </div>
-  <div class="card-synthesis">
-    <% categories_scores = [] %>
-    <% categories_best_scores = [] %>
+  <div class="card-content">
+    <h2>Introduction</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum accusamus omnis tenetur ratione obcaecati nostrum, quaerat doloremque, natus architecto perferendis impedit ex. Unde tempore voluptatem distinctio sequi vero cumque labore?</p>
+    <h2>Votre analyse personnalysée</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Categorie</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% total_user = 0 %>
+        <% total_test = 0 %>
+        <% @synthesis.each do |s|%>
+          <tr>
+            <td><%= s[:category] %></td>
+            <td><%= s[:score] %> / <%= s[:best_score] %></td>
+          </tr>
+          <% total_user += s[:score] %>
+          <% total_test += s[:best_score] %>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <td>Total</td>
+        <td><%= total_user %> / <%= total_test %></td>
+      </tfoot>
+    </table>
+
     <ul>
-      <% @categories.each do |category| %>
-        <div class="card-results">
-          <%= category.name %>
-          <% scores = [] %>
-          <% best_scores = [] %>
-          <% category.questions.each do |question| %>
-            <% best_answer = question.answers.order(:score).last %>
-            <% user_answer = question.user_answers.where(user: current_user).first %>
-            <% scores.push(user_answer.answer.score) %>
-            <% best_scores.push(best_answer.score) %>
-          <% end %>
-          <p>Score : <%= category_score = scores.sum %> / <%= category_best_score = best_scores.sum %></p>
-          <%= category.comments.find { |comment| (comment.min .. comment.max).include?(category_score)} %>
-          <% categories_scores.push(category_score) %>
-          <% categories_best_scores.push(category_best_score) %>
-        </div>
+      <% @synthesis.each do |s|%>
+        <li>
+          <h3><%= s[:category] %></h3>
+          <%= s[:comment].first.content %></li>
       <% end %>
     </ul>
-    <p>Total : <%= global_score = categories_scores.sum %> / <%= global_best_score = categories_best_scores.sum %></p>
   </div>
-  <div class="card-analysis">
-    <% @categories.each do |category| %>
-    <%= category.name %>
-      <% category_score = 0 %>
-      <% category.questions.each do |question| %>
-
-            <% user_answer = question.user_answers.where(user: current_user).first %>
-            <% category_score += user_answer.answer.score %>
-
-          <% end %>
-      <% user_comment = category.comments.select { |comment| (comment.min .. comment.max).include?(category_score)} %>
-      <%= user_comment %>
-    <% end %>
-  </div>
-  <%= link_to "Partager mes résultats" %>
 </div>

@@ -22,5 +22,21 @@ class UserAnswersController < ApplicationController
     @user_answers = UserAnswer.where(user: current_user)
     @form = Form.find(params[:form_id])
     @categories = @form.categories
+    @synthesis = []
+    @categories.each do |category|
+      category_score = 0
+      category_best_score = 0
+      category.questions.each do |question|
+        best_answer = question.answers.order(:score).last
+        user_answer = question.user_answers.where(user: current_user).first
+        category_score += user_answer.answer.score
+        category_best_score += best_answer.score
+      end
+      infos = { category: category.name,
+                score: category_score,
+                best_score: category_best_score,
+                comment: category.comments.select { |comment| (comment.min .. comment.max).include?(category_score) } }
+      @synthesis << infos
+    end
   end
 end

@@ -1,12 +1,16 @@
 <div class="container">
-  <h1>Tests disponibles</h1>
-  <ul>
-    <% @forms.each do |form| %>
-      <li><%= link_to form.name, form_path(form) %> - <%= link_to "edit", edit_form_path(form) %> | <%= link_to "Remove",
-                  form_path(form),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-    <% end %>
-  </ul>
-  <%= link_to 'Ajouter un test', new_form_path %>
+  <div class="card-title">
+    <h1>Tests disponibles</h1>
+  </div>
+  <div class="card-content">
+    <ul>
+      <% @forms.each do |form| %>
+        <li><h3><%= link_to form.name, form_path(form) %></h3>  <small><%= link_to "edit", edit_form_path(form) %> | <%= link_to "Remove",
+                    form_path(form),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></small></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Ajouter un test', new_form_path %>
+  </div>
 </div>
