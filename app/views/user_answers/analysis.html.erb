@@ -18,6 +18,7 @@
             <% best_scores.push(best_answer.score) %>
           <% end %>
           <p>Score : <%= category_score = scores.sum %> / <%= category_best_score = best_scores.sum %></p>
+          <%= category.comments.find { |comment| (comment.min .. comment.max).include?(category_score)} %>
           <% categories_scores.push(category_score) %>
           <% categories_best_scores.push(category_best_score) %>
         </div>
@@ -27,8 +28,16 @@
   </div>
   <div class="card-analysis">
     <% @categories.each do |category| %>
+    <%= category.name %>
+      <% category_score = 0 %>
+      <% category.questions.each do |question| %>
+
+            <% user_answer = question.user_answers.where(user: current_user).first %>
+            <% category_score += user_answer.answer.score %>
+
+          <% end %>
       <% user_comment = category.comments.select { |comment| (comment.min .. comment.max).include?(category_score)} %>
-      <%= user_comment.content %>
+      <%= user_comment %>
     <% end %>
   </div>
   <%= link_to "Partager mes résultats" %>

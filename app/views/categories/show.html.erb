@@ -9,6 +9,7 @@
       <%= f.input :content %>
       <%= f.input :min %>
       <%= f.input :max %>
+      <%= hidden_field_tag :form, @form.id %>
       <%= f.submit "Submit comment", class: "btn btn-primary" %>
   <% end %>
   <%= link_to "Retour au test", form_path(@form) %>
