@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @category = Category.find(params[:category_id])
     @comment = Comment.new(comment_params)
+    @category = Category.find(params[:category_id])
     @comment.category = @category
     @comment.save
-    @form = Form.find(params[:form])
+    @form = Form.find(params[:id])
     redirect_to form_category_path(@form, @category)
   end
 
