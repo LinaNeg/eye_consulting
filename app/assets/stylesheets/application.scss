@@ -11,18 +11,9 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "font-awesome";
+@import "font-awesome-sprockets";
 
 .green {
-  background-color: rgb(144, 192, 144);
-}
-
-table,
-td {
-    border: 1px solid #333;
-}
-
-thead,
-tfoot {
-    background-color: #333;
-    color: #fff;
+  background-color: $my-yellow;
 }

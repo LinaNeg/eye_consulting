@@ -1,12 +1,12 @@
 .category {
-  background-color: aqua;
+  background-color: #fdeed0;
   margin: 10px;
   padding: 10px;
   list-style-position: inside;
 }
 
 .question {
-  background-color: aquamarine;
+  background-color: #fde1a9;
   margin: 10px;
   padding: 10px;
   list-style-position: inside;
@@ -14,34 +14,49 @@
 }
 
 .answer {
-  background-color: azure;
+  background-color: #ffd580;
   margin: 10px;
   padding: 10px;
   list-style-type: none;
 }
 
 .card-title {
-  background-color: aquamarine;
+  background-color: $my-yellow;
   padding: 15px;
   text-align: center;
+
+  h1 {
+    font-family: 'Francois One', sans-serif;
+    color: $my-darkblue;
+    padding: 15px;
+  }
 }
 
 .card-content {
   display: block;
-  background-color: ivory;
+  background-color: #fdfcfa;
   text-align: justify;
   margin: 0px;
   padding: 10px;
 
-  h1 {
-    color: rgb(9, 78, 90);
+  h2, h3, p {
+    font-family: 'Roboto', sans-serif;
+    color: $my-darkblue;
     padding: 20px;
   }
 
   h2 {
-    border: 1px solid rgb(9, 78, 90);
-    color: rgb(9, 78, 90);
-    padding: 20px;
+    font-weight: 700;
+    border: 2px solid $my-darkblue;
+  }
+
+  h3 {
+    font-weight: 400;
+    color: $my-yellow;
+  }
+
+  p {
+    font-weight: 400;
   }
 
   ul {
@@ -63,9 +78,15 @@
 
   thead, tfoot {
 
-    background-color: aquamarine;
-    color: black;
+    background-color: $my-yellow;
+    color: $my-darkblue;
   }
+}
+
+.card-social ul li {
+  display: inline-block;
+  list-style-type: none;
+  justify-content: space-between;
 }
 
 .card-category {
@@ -84,34 +105,29 @@
 }
 
 .card-product {
-  overflow: hidden;
   height: 120px;
-  background: white;
+  background: $my-lightgreen;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  margin-top: 10px;
+  padding: 10px;
 }
 
-.card-product img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
-}
+.card-results {
+  background: $my-lightgreen;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-top: 10px;
+  padding: 10px;
 
-.card-product h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
+  P {
+    padding: 10px;
+  }
 
-.card-product p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-
-.card-product .card-product-infos {
-  padding: 16px;
+  span {
+    background-color: $my-darkblue;
+    color: #fdfcfa;
+    padding: 5px;
+    margin-left: 10px;
+  }
 }

@@ -1,32 +1,33 @@
 <div class="container">
   <div class="card-title">
-    <h1>Vos résultats</h1>
+    <h1>Vos réponses</h1>
   </div>
-  <div class="card-content"></div>
-  <% global_score = 0 %>
-  <% global_best_score = 0 %>
-  <ul>
-    <% @categories.each do |category| %>
-      <div class="card-results">
-        <%= category.name %>
-        <% score = 0 %>
-        <% best_score = 0 %>
-        <% category.questions.each do |question| %>
-          <% best_answer = question.answers.order(:score).last %>
-          <% user_answer = question.user_answers.where(user: current_user).first %>
-          <% score += user_answer.answer.score %>
-          <% best_score += best_answer.score %>
-          <li>
-            <p>Question : <%= user_answer.question.content %></p>
-            <p>Votre réponse : <%= user_answer.answer.content %> - <%= user_answer.answer.score %></p>
-          </li>
-        <% end %>
-        <p>Score : <%= score %> / <%= best_score %></p>
-        <% global_score += score %>
-        <% global_best_score += best_score %>
-      </div>
-    <% end %>
-  </ul>
-  <p>Total : <%= global_score %> / <%= global_best_score %></p>
-  <%= link_to "Voir l'analyse", form_analysis_path(@form) %>
+  <div class="card-content">
+    <% global_score = 0 %>
+    <% global_best_score = 0 %>
+    <ul>
+      <% @categories.each do |category| %>
+        <div class="card-results">
+          <h3><%= category.name %></h3>
+          <% score = 0 %>
+          <% best_score = 0 %>
+          <% category.questions.each do |question| %>
+            <% best_answer = question.answers.order(:score).last %>
+            <% user_answer = question.user_answers.where(user: current_user).first %>
+            <% score += user_answer.answer.score %>
+            <% best_score += best_answer.score %>
+            <li>
+              <h4><%= user_answer.question.content %></h4>
+              <p>Votre réponse : <%= user_answer.answer.content %> <span><%= user_answer.answer.score %> points</span></p>
+            </li>
+          <% end %>
+          <h4 style= "text-align: right;">Score : <%= score %> / <%= best_score %></h4>
+          <% global_score += score %>
+          <% global_best_score += best_score %>
+        </div>
+      <% end %>
+    </ul>
+    <h3 style= "text-align: right;">Total : <%= global_score %> / <%= global_best_score %></h3>
+    <%= link_to "Voir l'analyse", form_analysis_path(@form) %>
+  </div>
 </div>
