@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
     @category.save
     @form_detail = FormDetail.new(form: @form, category: @category)
     @form_detail.save
-    redirect_to form_path(@form)
+    redirect_to form_path(@form, anchor: "category-#{@category.id}")
   end
 
   private

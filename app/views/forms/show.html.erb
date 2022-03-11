@@ -6,14 +6,14 @@
     <p><%= @form.description %></p>
     <ol>
       <% @categories.each do |category| %>
-        <div class="category">
+        <div class="category" id="category-<%= category.id %>">
           <li>
             <h2><%= category.name %></h2>
             <p>Objectif : <%= category.goal %></p>
             <%= link_to "Personnaliser les commentaires", form_category_path(@form, category) %>
             <ol>
               <% category.questions.each do |question| %>
-                <div class="question">
+                <div class="question" id="question-<%= question.id %>">
                   <li>
                     <p><%= question.content %></p>
                     <ul>

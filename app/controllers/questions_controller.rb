@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
     @question.category = @category
     @question.save
     @form = Form.find(params[:form])
-    redirect_to form_path(@form)
+    redirect_to form_path(@form, anchor: "question-#{@question.id}")
   end
 
   private
